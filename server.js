@@ -18,6 +18,40 @@ mongoose
   })
   .then(() => console.log('DB connection successful!'));
 
+const tourSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  rating: {
+    type: Number,
+    default: 4.5,
+  },
+  price: {
+    type: Number,
+    required: ['A Tour must have a price'],
+  },
+});
+
+const Tour = mongoose.model('Tour', tourSchema);
+
+const testTour = new Tour({
+  name: ' Adventure Merbabu Mountain',
+  rating: 5,
+  price: 600,
+});
+
+testTour
+  .save()
+  .then((doc) => {
+    console.log(doc);
+  })
+  // eslint-disable-next-line no-unused-vars
+  .catch((err) => {
+    console.log('err');
+  });
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`server is running on port ${port}...`);
