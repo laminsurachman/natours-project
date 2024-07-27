@@ -1,8 +1,12 @@
+/* eslint-disable import/newline-after-import */
+/* eslint-disable prettier/prettier */
+/* eslint-disable import/extensions */
 const express = require('express');
+// eslint-disable-next-line import/no-useless-path-segments
 const tourController = require('./../controllers/tourController.js');
 const router = express.Router();
 
-router.param('id', tourController.checkID);
+// router.param('id', tourController.checkID);
 router
   .route('/')
   .get(tourController.getAllTours)
