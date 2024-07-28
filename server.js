@@ -1,15 +1,12 @@
+/* eslint-disable import/newline-after-import */
 /* eslint-disable prettier/prettier */
+/* eslint-disable no-undef */
 /* eslint-disable no-console */
-/* eslint-disable import/extensions */
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
 dotenv.config({ path: './config.env' });
-
-const app = require('./app.js');
-
-// console.log(process.env);
-
+const app = require('./app');
 mongoose
   .connect(process.env.DATABASE_LOCAL, {
     useNewUrlParser: true,
@@ -17,8 +14,6 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => console.log('DB connection successful!'));
-
-// eslint-disable-next-line no-unused-vars
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
